@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[17]:
+# In[4]:
 
 
 import csv
@@ -19,9 +19,14 @@ def main():
     
     for row in data:
         station = row[3]
-        station_in[station] = int(row[10]) + int(row[12])
-        station_out[station] = int(row[11]) + int(row[13])
-        station_inout[station] = int(row[10]) + int(row[11]) + int(row[12]) + int(row[13])
+        if(station in station_in): station_in[station] += int(row[10]) + int(row[12])
+        else: station_in[station] = int(row[10]) + int(row[12])
+        
+        if(station in station_out): station_out[station] += int(row[11]) + int(row[13])
+        else: station_out[station] = int(row[11]) + int(row[13])
+            
+        if(station in station_inout): station_inout[station] += int(row[10]) + int(row[11]) + int(row[12]) + int(row[13])
+        else: station_inout[station] = int(row[10]) + int(row[11]) + int(row[12]) + int(row[13])
     
     f.close()
         

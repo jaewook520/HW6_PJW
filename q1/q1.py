@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[33]:
+# In[14]:
 
 
 import csv
@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 def main():
     f = [[],[],[],[],[]]
     month_temp_avg = [[0 for col in range(12)] for row in range(5)]
-    month = [[],[],[],[],[],[],[],[],[],[],[],[]]
     
     f[0] = open('all.csv', 'r')
     f[1] = open('seoul.csv', 'r')
@@ -21,6 +20,7 @@ def main():
     for i in range(5):
         data = csv.reader(f[i])
         next(data)
+        month = [[],[],[],[],[],[],[],[],[],[],[],[]]
         for row in data:
             month[int(row[0].split('-')[1])-1].append(float(row[2]))
         for j in range(12):
@@ -28,6 +28,7 @@ def main():
         f[i].close()
     
     plt.figure(figsize=(10,20))
+    
     plt.subplot(2,1,1)
     plt.plot(range(1,13), month_temp_avg[0], label = 'all')
     plt.plot(range(1,13), month_temp_avg[1], label = 'seoul')
